@@ -34,5 +34,5 @@ jobs:
           name: coverage-report-${{ matrix.node-version }}-${{ github.run_number }}
           path: coverage/
       - name: Deploy to Vercel
-        if: github.ref == 'refs/heads/main' && success()
-        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+        if: github.ref == 'refs/heads/main' && matrix.node-version == '18.x' && success()
+        run: npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
